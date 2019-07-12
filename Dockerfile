@@ -1,8 +1,8 @@
-FROM jgoerzen/debian-base-apache-php:stretch
+FROM jgoerzen/debian-base-apache-php:buster
 MAINTAINER John Goerzen <jgoerzen@complete.org>
 RUN mv /usr/sbin/policy-rc.d.disabled /usr/sbin/policy-rc.d
 RUN apt-get update && \
-    apt-get -y --no-install-recommends install php7.0-mysql php-xml \
+    apt-get -y --no-install-recommends install php-mysql php-xml \
         php-json php-curl \
         libav-tools ffmpeg php-gd git timidity && \
     apt-get -y -u dist-upgrade && \
@@ -14,7 +14,7 @@ RUN cd /var/www/html/ampache && \
     chown www-data lib/vendor lib/components && \
     su www-data -s /bin/bash -c 'composer install --prefer-source --no-interaction' && \
     chown -R root:root /var/www/html/ampache
-COPY 99-ampache.ini /etc/php/7.0/apache2/conf.d/
+COPY 99-ampache.ini /etc/php/7.3/apache2/conf.d/
 RUN a2enmod rewrite && \
     a2enmod ssl && \
     ln -s html/ampache /var/www/ampache
