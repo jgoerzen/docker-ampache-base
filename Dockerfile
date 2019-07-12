@@ -25,6 +25,9 @@ RUN chown -R www-data /var/www/html/ampache/config && \
       chown www-data /var/www/html/ampache/$FILE; \
       chown www-data /var/www/html/ampache/$FILE/.htaccess || true; \
       done
+# Compatibility - avconv was available in stretch; in buster, it's
+# all ffmpeg.  For existing configs that use it:
+RUN ln -s ffmpeg /usr/bin/avconv
 RUN /usr/local/bin/docker-wipelogs
 RUN mv /usr/sbin/policy-rc.d /usr/sbin/policy-rc.d.disabled
 
