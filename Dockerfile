@@ -4,7 +4,7 @@ RUN mv /usr/sbin/policy-rc.d.disabled /usr/sbin/policy-rc.d
 RUN apt-get update && \
     apt-get -y --no-install-recommends install php-mysql php-xml \
         php-json php-curl \
-        libav-tools ffmpeg php-gd git timidity && \
+        ffmpeg php-gd git timidity && \
     apt-get -y -u dist-upgrade && \
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 COPY setup/ /tmp/setup/
