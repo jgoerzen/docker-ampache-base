@@ -20,11 +20,7 @@ RUN a2enmod rewrite && \
     ln -s html/ampache /var/www/ampache
 # Mark things writable.  This list is in lib/debug.lib.php
 # For auto-update to work, the entire thing has to be owned by www-data
-RUN chown -R www-data /var/www/html/ampache/config && \
-    for FILE in channel rest play; do \
-      chown www-data /var/www/html/ampache/$FILE; \
-      chown www-data /var/www/html/ampache/$FILE/.htaccess || true; \
-      done
+RUN chown -R www-data /var/www/html/ampache
 # Compatibility - avconv was available in stretch; in buster, it's
 # all ffmpeg.  For existing configs that use it:
 RUN ln -s ffmpeg /usr/bin/avconv
