@@ -13,7 +13,9 @@ RUN cd /var/www/html/ampache && \
     mkdir lib/vendor lib/components && \
     chown www-data lib/vendor lib/components && \
     su www-data -s /bin/bash -c 'composer install --prefer-source --no-interaction' && \
-    chown -R root:root /var/www/html/ampache
+    chown -R www-data:www-data /var/www/html/ampache
+RUN cd /var/www/html/ampache && \
+    for DIR in rest play channel; do mv -v $DIR/.htaccess.dist $DIR/.htaccess; done
 COPY 99-ampache.ini /etc/php/7.3/apache2/conf.d/
 RUN a2enmod rewrite && \
     a2enmod ssl && \
