@@ -14,8 +14,7 @@ then
     exit 1
 fi
 
-# jgoerzen 2020-10-25: force 1.0.x version due to issue with 2.x for now; remove --version= later.
-php composer-setup.php --version=1.10.16
+php composer-setup.php
 RESULT=$?
 rm composer-setup.php
 exit $RESULT
