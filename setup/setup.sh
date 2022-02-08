@@ -8,7 +8,7 @@ cd /tmp/setup
 mv -vi composer.phar /usr/local/bin/composer
 
 # WHEN UPDATING VERSION, ALSO UPDATE GITLAB CI FILE!
-VERSION=4.2.3
+VERSION=5.2.0
 
 wget https://github.com/ampache/ampache/archive/$VERSION.tar.gz
 sha256sum -c < sums
