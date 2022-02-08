@@ -4,7 +4,7 @@ RUN mv /usr/sbin/policy-rc.d.disabled /usr/sbin/policy-rc.d
 RUN apt-get update && \
     apt-get -y --no-install-recommends install php-mysql php-xml \
         php-json php-curl php-intl php-zip \
-        ffmpeg php-gd git timidity && \
+        ffmpeg php-gd git timidity flac vorbis-tools && \
     apt-get -y -u dist-upgrade && \
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 COPY setup/ /tmp/setup/
@@ -12,7 +12,7 @@ RUN /tmp/setup/setup.sh
 RUN cd /var/www/html/ampache && \
     chown -R www-data:www-data /var/www && \
     su www-data -s /bin/bash -c 'composer install --prefer-source --no-interaction'
-RUN cd /var/www/html/ampache && \
+RUN cd /var/www/html/ampache/public && \
     for DIR in rest play channel; do mv -v $DIR/.htaccess.dist $DIR/.htaccess; done
 COPY 99-ampache.ini /etc/php/7.4/apache2/conf.d/
 RUN a2enmod rewrite && \
