@@ -13,6 +13,7 @@ sha256sum -c < sums
 
 cd /var/www/html
 mkdir ampache
+cd ampache
 unzip /tmp/setup/ampache-${VERSION}_all.zip
 
 exec rm -rf /tmp/setup
