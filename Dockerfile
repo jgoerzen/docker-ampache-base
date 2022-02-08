@@ -1,4 +1,4 @@
-FROM jgoerzen/debian-base-apache-php:buster
+FROM jgoerzen/debian-base-apache-php:bullseye
 MAINTAINER John Goerzen <jgoerzen@complete.org>
 RUN mv /usr/sbin/policy-rc.d.disabled /usr/sbin/policy-rc.d
 RUN apt-get update && \
@@ -16,7 +16,7 @@ RUN cd /var/www/html/ampache && \
     chown -R www-data:www-data /var/www/html/ampache
 RUN cd /var/www/html/ampache && \
     for DIR in rest play channel; do mv -v $DIR/.htaccess.dist $DIR/.htaccess; done
-COPY 99-ampache.ini /etc/php/7.3/apache2/conf.d/
+COPY 99-ampache.ini /etc/php/7.4/apache2/conf.d/
 RUN a2enmod rewrite && \
     a2enmod ssl && \
     ln -s html/ampache /var/www/ampache
