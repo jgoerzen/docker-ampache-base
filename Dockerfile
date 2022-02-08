@@ -8,12 +8,11 @@ RUN apt-get update && \
     apt-get -y -u dist-upgrade && \
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 COPY setup/ /tmp/setup/
+COPY 99-ampache.ini /etc/php/7.4/apache2/conf.d/
 RUN /tmp/setup/setup.sh
 RUN cd /var/www/html/ampache && \
-    chown -R www-data:www-data /var/www/ampache && \
     cd /var/www/html/ampache/public && \
     for DIR in rest play channel; do mv -v $DIR/.htaccess.dist $DIR/.htaccess; done
-COPY 99-ampache.ini /etc/php/7.4/apache2/conf.d/
 RUN a2enmod rewrite && \
     a2enmod ssl && \
     ln -s html/ampache /var/www/ampache
