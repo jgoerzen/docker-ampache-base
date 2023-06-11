@@ -1,4 +1,4 @@
-FROM jgoerzen/debian-base-apache-php:bullseye
+FROM jgoerzen/debian-base-apache-php:bookworm
 MAINTAINER John Goerzen <jgoerzen@complete.org>
 RUN mv /usr/sbin/policy-rc.d.disabled /usr/sbin/policy-rc.d
 RUN apt-get update && \
