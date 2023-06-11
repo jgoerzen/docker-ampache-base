@@ -9,7 +9,7 @@ RUN apt-get update && \
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 COPY setup/ /tmp/setup/
 RUN /tmp/setup/setup.sh
-COPY 99-ampache.ini /etc/php/7.4/apache2/conf.d/
+COPY 99-ampache.ini /etc/php/8.2/apache2/conf.d/
 RUN cd /var/www/html/ampache/public && \
     for DIR in rest play channel; do mv -v $DIR/.htaccess.dist $DIR/.htaccess; done
 RUN a2enmod rewrite && \
