@@ -16,5 +16,7 @@ mkdir ampache
 cd ampache
 unzip /tmp/setup/ampache-${VERSION}_all.zip
 
+set -i 's/^memory_limit.*$/memory_limit = 256M/' /etc/php/*/apache2/php.ini
+
 exec rm -rf /tmp/setup
 
