@@ -11,7 +11,7 @@ COPY setup/ /tmp/setup/
 RUN /tmp/setup/setup.sh
 COPY 99-ampache.ini /etc/php/8.2/apache2/conf.d/
 RUN cd /var/www/html/ampache/public && \
-    for DIR in rest play channel; do mv -v $DIR/.htaccess.dist $DIR/.htaccess; done
+    for DIR in rest play; do mv -v $DIR/.htaccess.dist $DIR/.htaccess; done
 RUN a2enmod rewrite && \
     a2enmod ssl && \
     ln -s html/ampache /var/www/ampache
